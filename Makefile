@@ -36,7 +36,9 @@ coverage:
 	$(COVERAGE) html
 
 pylint:
-	$(PYTHON) -m pylint --errors-only smartcard
+	$(PYTHON) -m pylint smartcard
+	$(PYTHON) -m pylint test/*
+	$(PYTHON) -m pylint src/smartcard/test
 
 ChangeLog.git:
 	git log --stat --decorate=short > $@
