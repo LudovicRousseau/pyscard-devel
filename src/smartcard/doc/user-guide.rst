@@ -106,13 +106,31 @@ connection:
     >>> data, sw1, sw2 = connection.transmit(SELECT + DF_TELECOM)
     >>> print("%x %x" % (sw1, sw2))
     9f 1a
+    >>> connection.disconnect()
+    >>> connection.release()
+
+Or using a context to automatically release the resources:
+
+.. sourcecode:: python
+
+    >>> from smartcard.System import readers
     >>>
+    >>> r = readers()
+    >>> print(r)
+    ['SchlumbergerSema Reflex USB v.2 0', 'Utimaco CardManUSB 0']
+    >>> with r[0].createConnection() as connection:
+    ...     connection.connect()
+    ...     SELECT = [0xA0, 0xA4, 0x00, 0x00, 0x02]
+    ...     DF_TELECOM = [0x7F, 0x10]
+    ...     data, sw1, sw2 = connection.transmit(SELECT + DF_TELECOM)
+    ...     print("%x %x" % (sw1, sw2))
+    9f 1a
 
 The list of available readers is retrieved with the readers() function.
 We create a connection with the first reader (index 0 for reader 1, 1
-for reader 2, ...) with the r[0].createConnection() call and connect to
-the card with the connect() method of the connection. We can then send
-APDU commands to the card with the transmit() method.
+for reader 2, ...) with the ``r[0].createConnection()`` call and connect to
+the card with the ``connect()`` method of the connection. We can then send
+APDU commands to the card with the ``transmit()`` method.
 
 Scripts written with the reader centric approach however have the
 following drawbacks:
