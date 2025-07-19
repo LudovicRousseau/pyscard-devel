@@ -35,6 +35,7 @@ class CardConnectionDecorator(CardConnection):
 
         CardConnectionComponent: CardConnection component to decorate
         """
+        super().__init__()
         self.component = cardConnectionComponent
 
     def addSWExceptionToFilter(self, exClass):
