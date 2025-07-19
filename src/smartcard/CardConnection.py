@@ -78,7 +78,7 @@ class CardConnection(Observable):
         """Remove a L{CardConnection} observer."""
         Observable.deleteObserver(self, observer)
 
-    def connect(self, protocol=None, mode=None, disposition=None):
+    def connect(self, _protocol=None, _mode=None, _disposition=None):
         """Connect to card.
         @param protocol: a bit mask of the protocols to use, from
         L{CardConnection.T0_protocol}, L{CardConnection.T1_protocol},
@@ -96,7 +96,7 @@ class CardConnection(Observable):
         Observable.setChanged(self)
         Observable.notifyObservers(self, CardConnectionEvent("connect"))
 
-    def reconnect(self, protocol=None, mode=None, disposition=None):
+    def reconnect(self, _protocol=None, _mode=None, _disposition=None):
         """Reconnect to card.
         @param protocol: a bit mask of the protocols to use, from
         L{CardConnection.T0_protocol}, L{CardConnection.T1_protocol},
@@ -183,7 +183,7 @@ class CardConnection(Observable):
             self.errorcheckingchain[0](data, sw1, sw2)
         return data, sw1, sw2
 
-    def doTransmit(self, command, protocol):
+    def doTransmit(self, _command, _protocol):
         """Performs the command APDU transmission.
 
         Subclasses must override this method for implementing apdu
@@ -213,7 +213,7 @@ class CardConnection(Observable):
             self.errorcheckingchain[0](data)
         return data
 
-    def doControl(self, controlCode, command):
+    def doControl(self, _controlCode, _command):
         """Performs the command control.
 
         Subclasses must override this method for implementing control."""
@@ -232,7 +232,7 @@ class CardConnection(Observable):
             self.errorcheckingchain[0](data)
         return data
 
-    def doGetAttrib(self, attribId):
+    def doGetAttrib(self, _attribId):
         """Performs the command get attrib.
 
         Subclasses must override this method for implementing get attrib."""
