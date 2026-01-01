@@ -112,7 +112,7 @@ jobs:
           ${{ env.venv-path }}/tox -e build
 
       - name: "Upload wheel"
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: wheel-${{ matrix.name }}-${{ matrix.cpython }}-${{ matrix.architecture }}
           path: dist/*.whl
@@ -175,7 +175,7 @@ jobs:
     steps:
 
       - name: Download artifacts
-        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # 6.0.0
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # 7.0.0
 
       - name: move wheels to dist/
         run: |
