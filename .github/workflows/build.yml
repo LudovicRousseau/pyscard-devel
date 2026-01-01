@@ -113,6 +113,7 @@ jobs:
 
       - name: "Upload wheel"
         uses: actions/upload-artifact@v6
+        if: matrix.name != 'Linux'
         with:
           name: wheel-${{ matrix.name }}-${{ matrix.cpython }}-${{ matrix.architecture }}
           path: dist/*.whl
